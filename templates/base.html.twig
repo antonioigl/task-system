@@ -8,6 +8,16 @@
         {% endblock %}
     </head>
     <body>
+        {% block header %}
+            <h1>Tareas Symfony</h1>
+            <ul>
+                <li><a href="{{ path('tasks') }}">Inicio</a></li>
+                <li><a href="">Mis tareas</a></li>
+                <li><a href="">Login</a></li>
+                <li><a href="{{ path('register') }}">Registro</a></li>
+            </ul>
+
+        {% endblock %}
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
     </body>
