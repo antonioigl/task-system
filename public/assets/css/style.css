@@ -46,6 +46,12 @@ body{
     transition:  all 300ms;
 }
 
+#menu li.right{
+    float: right;
+    border-right: 0px;
+    border-left: 1px solid #CCC;
+}
+
 #menu a {
     display: block;
     color: #444;
