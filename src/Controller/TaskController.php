@@ -26,7 +26,7 @@ class TaskController extends AbstractController
 
         }
         */
-
+/*
         $user_repo = $this->getDoctrine()->getRepository(User::class);
         $users = $user_repo->findAll();
 
@@ -38,6 +38,7 @@ class TaskController extends AbstractController
 
             }
         }
+*/
 
         return $this->render('task/index.html.twig', [
             'controller_name' => 'TaskController',
