@@ -16,16 +16,9 @@ class TaskController extends AbstractController
         //Prueba de entidades y relaciones
 
         $em = $this->getDoctrine()->getManager();
-
-        /*
         $task_repo = $this->getDoctrine()->getRepository(Task::class);
-        $tasks = $task_repo->findAll();
+        $tasks = $task_repo->findBy([], ['id' => 'DESC']);
 
-        foreach ($tasks as $task) {
-            echo $task->getUser()->getEmail() . ': ' . $task->getTitle() . "<br/>";
-
-        }
-        */
 /*
         $user_repo = $this->getDoctrine()->getRepository(User::class);
         $users = $user_repo->findAll();
@@ -41,7 +34,7 @@ class TaskController extends AbstractController
 */
 
         return $this->render('task/index.html.twig', [
-            'controller_name' => 'TaskController',
+            'tasks' => $tasks,
         ]);
     }
 }
