@@ -88,4 +88,37 @@ class TaskController extends AbstractController
             'tasks' => $tasks,
         ]);
     }
+
+    public function edit(Request $request, UserInterface $user, Task $task)
+    {
+        //Si el usuario no existe o el id del usuario identificado es diferente al usuario que ha creado la tarea redirecciona
+        if (!$user || $user->getId() != $task->getUser()->getId()){
+            return $this->redirectToRoute('tasks');
+        }
+
+        $form = $this->createForm(TaskType::class, $task);
+
+        //unir lo que llega por la petición al objeto
+        //lo que llega del formulario lo metemos al nuevo objeto
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()){
+            //$task->setCreatedAt(new \DateTime('now'));
+            //$task->setUser($user);
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($task);
+            $em->flush();
+
+            return $this->redirect(
+                $this->generateUrl('task_detail', ['id' => $task->getId()])
+            );
+
+        }
+
+        return $this->render('task/creation.html.twig',[
+            'edit' => true,
+            'form' => $form->createView(),
+        ]);
+    }
 }
